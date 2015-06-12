@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>DatingSite</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>DatingSite</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="container">
+    <%= notice %>
+    <header>
+      <ul class='nav nav-pills'>
+        <% if user_signed_in? %>
+        <li class = "<%= active_for_page('pages#home')%>"><a href="<%= root_path %>">Home page</a></li>
+        <li  class = "<%= active_for_page('users#index')%>"><a href="<%= list_path %>">List page</a></li>
+        <li  class = "<%= active_for_page('users#edit')%>"><a href="<%= edit_path %>">Edit page</a></li>
+        <li><a href="<%= logout_path %>"data-method ="delete" class = "text-danger">Logout</a></li>
+        <% else %>
+        <li  class = "<%= active_for_page('users#new')%>"><a href="<%= signup_path%>">Sign up</a></li>
+        <li  class = "<%= active_for_page('sessions#new')%>"><a href="<%= login_path %>">Login</a></li>
+        <% end %>
+      </ul>
+    </header>
+    <div class="flash_messages">
+    <p>
+      <%= alert %>
+      <%= notice %>
+    </p>
+    <section>
+    <%= yield %>
+    </section>
+    <%= session[:user_id] %>
+    <%= session[:gneder] %>
+    <footer>
+      copyright &copy <%= Time.now.year %>
+    </footer>
+  </body>
 </html>

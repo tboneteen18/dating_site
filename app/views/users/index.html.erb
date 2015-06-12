@@ -1,0 +1,11 @@
+<ul>
+  <%if current_user.male?%>
+    <% @girls.each do |girl| %>
+      <li><%= link_to(girl.name, show_path(girl.id)) %></li>
+    <% end %>
+  <% else %>
+    <% @guys.each do |guy| %>
+      <li><%= guy.name %></li>
+    <% end %>
+  <% end %>
+</ul>

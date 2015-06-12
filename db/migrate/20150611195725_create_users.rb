@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :gender, dafault: 0
       t.string :name
       t.datetime :birthdate
-      t.string :bio
+      t.text :bio
       t.timestamps null: false
     end
   end
